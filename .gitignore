@@ -1,0 +1,44 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+.envrc
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# DVC — commit `.dvc` files and `dvc.lock`; ignore local cache
+.dvc/cache/
+.dvc/tmp/
+
+# Experiment tracking
+mlruns/
+wandb/
+
+# Large artifacts (prefer DVC or remote registry)
+artifacts/*
+!artifacts/.gitkeep
+
+# Data blobs (track with DVC; keep only placeholders in Git)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# folders
+IGNORE_FILES
+docs

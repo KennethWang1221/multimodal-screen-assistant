@@ -1,0 +1,21 @@
+torch
+torchvision
+transformers @ git+https://github.com/huggingface/transformers.git@main
+accelerate
+trl
+peft
+bitsandbytes
+datasets
+pillow
+numpy
+tqdm
+opencv-python
+paddleocr[all]
+fastapi
+uvicorn
+pydantic
+python-multipart
+dvc
+mlflow
+wandb
+
