@@ -1,57 +1,80 @@
-# Multimodal screenshot assistant
+# Multimodal Screenshot Assistant
 
-Screenshot and text query in, grounded answers out—coding help
+Screenshot + text query in, grounded answer out.
 
 ## Setup
 
-### Install dependenices
+### 1) Install dependencies
 
-Install [uv](https://github.com/astral-sh/uv), then:
+Install [uv](https://github.com/astral-sh/uv), then run:
 
 ```bash
-cd multimodal-screen-assistant   # repository root
+cd multimodal-screen-assistant
 uv venv
 source .venv/bin/activate
 uv pip install -r requirements.txt
 ```
-### Download the weights 
+
+### 2) Download model weights
+
+```bash
 cd model
 git clone https://huggingface.co/jingyaogong/siglip2-base-p16-ve
-cd ../
+cd ..
 git clone git@hf.co:jingyaogong/minimind-3v-pytorch
 git clone git@hf.co:jingyaogong/minimind-3v
-cd ./out
-ln -s ../minimind-3v-pytorch/*.pth . 
+cd out
+ln -s ../minimind-3v-pytorch/*.pth .
+cd ..
+```
 
-### Download the dataset 
+### 3) Download dataset
 
-cd ../dataset
+```bash
+cd dataset
 git clone git@hf.co:datasets/jingyaogong/minimind-v_dataset
-ln -s ./minimind-v_dataset/*.parquet . 
-cd ../
+ln -s ./minimind-v_dataset/*.parquet .
+cd ..
+```
 
-## Quick Start  
+## Quick Start
 
-### load_from='model': 加载原生PyTorch权重, load_from='其他路径': 加载transformers格式
+Use native PyTorch weights:
+
+```bash
 python eval_vlm.py --load_from model --weight sft_vlm
+```
 
-### 或使用transformers格式模型
+Use Transformers-format weights:
+
+```bash
 python eval_vlm.py --load_from minimind-3v
+```
 
 ## Training
 
 ### Pretrain
 
-python train_pretrain_vlm.py --epochs 4 --from_weight llm
+```bash
+python trainer/train_pretrain_vlm.py --epochs 4 --from_weight llm
+```
 
 ### SFT
 
-python train_sft_vlm.py --epochs 2 --from_weight pretrain_vlm
+```bash
+python trainer/train_sft_vlm.py --epochs 2 --from_weight pretrain_vlm
+```
 
-## Inference 
+## Inference
 
-### Test SFT
+Test SFT checkpoint:
+
+```bash
 python eval_vlm.py --weight sft_vlm
+```
 
-### Test Pretrain
+Test pretrain checkpoint:
+
+```bash
 python eval_vlm.py --weight pretrain_vlm
+```
