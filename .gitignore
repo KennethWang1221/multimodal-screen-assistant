@@ -42,10 +42,10 @@ Thumbs.db
 # folders
 IGNORE_FILES
 docs
-
-minimind-3v-pytorch/
+.vscode/
+minimind-3v-pytorch
 minimind-3v
-minimind-v_dataset/
+minimind-v_dataset
 out
 siglip2-base-p16-ve
 dataset/pretrain_i2t.parquet

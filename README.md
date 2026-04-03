@@ -56,13 +56,15 @@ python eval_vlm.py --load_from minimind-3v
 ### Pretrain
 
 ```bash
-python trainer/train_pretrain_vlm.py --epochs 4 --from_weight llm
+cd trainer
+python train_pretrain_vlm.py --epochs 4 --from_weight llm
 ```
 
 ### SFT
 
 ```bash
-python trainer/train_sft_vlm.py --epochs 2 --from_weight pretrain_vlm
+trainer
+python train_sft_vlm.py --epochs 2 --from_weight pretrain_vlm
 ```
 
 ## Inference
@@ -70,6 +72,7 @@ python trainer/train_sft_vlm.py --epochs 2 --from_weight pretrain_vlm
 Test SFT checkpoint:
 
 ```bash
+cd ../
 python eval_vlm.py --weight sft_vlm
 ```
 
